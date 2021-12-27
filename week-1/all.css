@@ -1,0 +1,133 @@
+/* 清除 body 預設樣式 */
+body {
+    margin: 0;
+}
+/* 清除 ul 預設樣式 */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    /* 文字基礎尺寸為 20px */
+    font-size: 20px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+.nav a {
+    text-decoration: none;
+    display: block;
+    color: #000;
+    padding: 0.5rem 0;
+}
+/* 螢幕寬度 > 600px，不顯示 */
+.nav .list {
+    display: none;
+}
+
+.nav .itemList {
+    display: flex;
+}
+.nav .itemList li a {
+    margin: 0 1rem;
+}
+
+.header h1 {
+    /* 文字的尺寸為基礎尺寸的兩倍大 */
+    font-size: 2rem;
+    background: #DDEEF8;
+    height: 300px;
+    /* 文字 水平垂直置中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+
+.main {
+    /* 總寬度固定在 1200px 左右 */
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+.main ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* 八個方框，每四個一列 */
+.main ul li {
+    position: relative;
+    /* 長、寬設定相同 */
+    width: 23.5%;
+    height: 0;
+    padding-bottom: 23.5%;
+    margin: 0 1% 2rem 1%;
+}
+/* 第一筆資料 */
+.main ul li:nth-child(4n+1) {
+    margin: 0 1% 2rem 0;
+}
+/* 最後一筆資料 */
+.main ul li:nth-child(4n) {
+    margin: 0 0 2rem 1%;
+}
+.main ul li img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.main ul li p {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #CBDDE8;
+    margin: 0;
+    text-align: center;
+    line-height: 2.5;
+}
+
+@media screen and (max-width: 1200px) {
+    .main {
+        width: 90%;
+    }
+    .main ul li {
+        width: 48%;
+        padding-bottom: 48%;
+    }
+    .main ul li:nth-child(odd) {
+        margin: 0 2% 2rem 0;
+    }
+    .main ul li:nth-child(even) {
+        margin: 0 0 2rem 2%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .nav .list {
+        display: block;
+        background: url(pic/list.png) no-repeat center center;
+        background-size: contain;
+        opacity: 0.4;
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+    .nav .itemList {
+        display: none;
+    }
+    .main ul li {
+        width: 100%;
+        padding-bottom: 100%;
+    }
+    .main ul li:nth-child(n) {
+        margin: 0 0 2rem 0;
+    }
+}
