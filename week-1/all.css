@@ -26,14 +26,71 @@ html {
     display: block;
     color: #000;
 }
-.nav .list {
-    /* 螢幕寬度 > 600px，不顯示 */
+.nav #hamburger {
     display: none;
 }
-.nav .itemList {
-    display: flex;
+.nav .menuToggle {
+    /* 螢幕寬度 > 600px，不顯示 */
+    display: none;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    border-radius: 50%;
+    z-index: 2;
 }
-.nav .itemList li a {
+.nav .menuToggle span,
+.nav .menuToggle span::before,
+.nav .menuToggle span::after {
+    display: block;
+    width: 1.2rem;
+    height: 4px;
+    background: #c9c9c9;
+    border-radius: 2px;
+}
+.nav .menuToggle span {
+    margin: 8px auto;
+    transition: all 0.2s ease-in-out;
+}
+.nav .menuToggle span::before,
+.nav .menuToggle span::after {
+    content: "";
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+}
+.nav .menuToggle span::before {
+    top: 0;
+}
+.nav .menuToggle span::after {
+    bottom: 0;
+}
+.nav #hamburger:checked ~ .menuToggle {
+    /* 和選單一樣，將漢堡圖示改為固定 */
+    position: fixed;
+    top: 0.5rem;
+    right: 1rem;
+}
+.nav #hamburger:checked ~ .menuToggle span,
+.nav #hamburger:checked ~ .menuToggle span:before,
+.nav #hamburger:checked ~ .menuToggle span:after {
+    /* 增加寬度，不會因為旋轉覺得圖示變小 */
+    width: 1.4rem;
+}
+.nav #hamburger:checked ~ .menuToggle span {
+    visibility: hidden;
+}
+.nav #hamburger:checked ~ .menuToggle span:before {
+    visibility: visible;
+    transform: translateY(8px) rotate(45deg);
+}
+.nav #hamburger:checked ~ .menuToggle span:after {
+    visibility: visible;
+    transform: translateY(-8px) rotate(-45deg);
+}
+.nav .menu {
+    display: flex;
+    z-index: 1;
+}
+.nav .menu li a {
     margin: 0 1rem;
 }
 
@@ -110,16 +167,25 @@ html {
 }
 
 @media screen and (max-width: 600px) {
-    .nav .list {
+    .menuToggle {
         display: block;
-        background: url(pic/list.png) no-repeat center center;
-        background-size: contain;
-        opacity: 0.4;
-        width: 1rem;
-        height: 1rem;
     }
-    .nav .itemList {
-        display: none;
+    .menu {
+        flex-direction: column;
+        width: 40vw;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        /* 因為陰影範圍，多移動 2% 距離 */
+        transform: translateX(102%);
+        transition: all .6s;
+        background: rgb(255, 255, 255, 0.9);
+        box-shadow: -1px 0 4px #c5c5c5;
+        padding-top: 2rem;
+    }
+    #hamburger:checked ~ .menu {
+        transform: none;
     }
     .main ul li {
         width: 100%;
@@ -127,6 +193,13 @@ html {
     }
     .main ul li:nth-child(n) {
         margin: 0 0 2rem 0;
+    }
+    .nav .menu li a {
+        margin: 0;
+        padding: 0.5rem 1rem;
+    }
+    .nav .menu li a:hover {
+        background: rgb(255, 184, 194, 0.5);
     }
 }
 
