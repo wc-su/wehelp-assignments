@@ -167,10 +167,10 @@ html {
 }
 
 @media screen and (max-width: 600px) {
-    .menuToggle {
+    .nav .menuToggle {
         display: block;
     }
-    .menu {
+    .nav .menu {
         flex-direction: column;
         width: 40vw;
         position: fixed;
@@ -184,15 +184,8 @@ html {
         box-shadow: -1px 0 4px #c5c5c5;
         padding-top: 2rem;
     }
-    #hamburger:checked ~ .menu {
+    .nav #hamburger:checked ~ .menu {
         transform: none;
-    }
-    .main ul li {
-        width: 100%;
-        padding-bottom: 100%;
-    }
-    .main ul li:nth-child(n) {
-        margin: 0 0 2rem 0;
     }
     .nav .menu li a {
         margin: 0;
@@ -200,6 +193,14 @@ html {
     }
     .nav .menu li a:hover {
         background: rgb(255, 184, 194, 0.5);
+    }
+    
+    .main ul li {
+        width: 100%;
+        padding-bottom: 100%;
+    }
+    .main ul li:nth-child(n) {
+        margin: 0 0 2rem 0;
     }
 }
 
