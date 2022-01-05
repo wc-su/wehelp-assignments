@@ -40,8 +40,15 @@ avg({
 # 要求三:演算法
 # 找出至少包含兩筆整數的列表 (Python) 或陣列 (JavaScript) 中，兩兩數字相乘後的最大值
 def maxProduct(nums):
-    nums.sort(reverse = True)
-    print(nums[0] * nums[1])
+    max = [nums[0], nums[1]]
+    for i in range(2, len(nums)):
+        if(nums[i] > max[0]):
+            if(max[0] > max[1]):
+                max[1] = max[0]
+            max[0] = nums[i]
+        elif(nums[i] > max[1]):
+            max[1] = nums[i]
+    print(max[0] * max[1])
 maxProduct([5, 20, 2, 6]) # 得到 120
 maxProduct([10, -20, 0, 3]) # 得到 30
 maxProduct([-1, 2]) # 得到 -2
