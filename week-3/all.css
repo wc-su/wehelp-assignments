@@ -1,0 +1,237 @@
+/* 移除預設樣式 */
+body, ul, h1, p {
+    margin: 0;
+}
+body {
+    line-height: 1;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+html {
+    /* 文字基礎尺寸為 20px */
+    font-size: 20px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+.nav a {
+    text-decoration: none;
+    display: block;
+    color: #000;
+}
+.nav #hamburger {
+    display: none;
+}
+.nav .menuToggle {
+    /* 螢幕寬度 > 600px，不顯示 */
+    display: none;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    border-radius: 50%;
+    z-index: 2;
+}
+.nav .menuToggle span,
+.nav .menuToggle span::before,
+.nav .menuToggle span::after {
+    display: block;
+    width: 1.2rem;
+    height: 4px;
+    background: #c9c9c9;
+    border-radius: 2px;
+}
+.nav .menuToggle span {
+    margin: 8px auto;
+    transition: all 0.2s ease-in-out;
+}
+.nav .menuToggle span::before,
+.nav .menuToggle span::after {
+    content: "";
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+}
+.nav .menuToggle span::before {
+    top: 0;
+}
+.nav .menuToggle span::after {
+    bottom: 0;
+}
+.nav #hamburger:checked ~ .menuToggle {
+    /* 和選單一樣，將漢堡圖示改為固定 */
+    position: fixed;
+    top: 0.5rem;
+    right: 1rem;
+}
+.nav #hamburger:checked ~ .menuToggle span,
+.nav #hamburger:checked ~ .menuToggle span:before,
+.nav #hamburger:checked ~ .menuToggle span:after {
+    /* 增加寬度，不會因為旋轉覺得圖示變小 */
+    width: 1.4rem;
+}
+.nav #hamburger:checked ~ .menuToggle span {
+    visibility: hidden;
+}
+.nav #hamburger:checked ~ .menuToggle span:before {
+    visibility: visible;
+    transform: translateY(8px) rotate(45deg);
+}
+.nav #hamburger:checked ~ .menuToggle span:after {
+    visibility: visible;
+    transform: translateY(-8px) rotate(-45deg);
+}
+.nav .menu {
+    display: flex;
+    z-index: 1;
+}
+.nav .menu li a {
+    margin: 0 1rem;
+}
+
+.header h1 {
+    /* 文字的尺寸為基礎尺寸的兩倍大 */
+    font-size: 2rem;
+    background: #DDEEF8;
+    /* 文字 水平垂直置中 */
+    padding: 6.5rem 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+.main {
+    /* 總寬度固定在 1200px 左右 */
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+.main ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* 八個方框，每四個一列 */
+.main ul li {
+    position: relative;
+    /* 長、寬設定相同 */
+    width: 23.5%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 23.5%;
+    margin: 0 1% 2rem 1%;
+}
+/* 第一筆資料 */
+.main ul li:nth-child(4n+1) {
+    margin: 0 1% 2rem 0;
+}
+/* 最後一筆資料 */
+.main ul li:nth-child(4n) {
+    margin: 0 0 2rem 1%;
+}
+.main ul li:hover {
+    cursor: pointer;
+}
+.main ul li:hover p{
+    opacity: 0.8;
+}
+.main ul li img {
+    position: absolute;
+    top: 0;
+    /* 佔滿整個上層容器 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.main ul li p {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 1.6rem);
+    height: 14%;
+    background: #CBDDE8;
+    padding: 0.8rem;
+}
+.main div {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+.main div button {
+    display: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 1rem 2rem;
+}
+.main div button.active{
+    display: block;
+}
+
+@media screen and (max-width: 1200px) {
+    .main {
+        width: 90%;
+    }
+    .main ul li {
+        width: 48%;
+        padding-bottom: 48%;
+    }
+    .main ul li:nth-child(odd) {
+        margin: 0 2% 2rem 0;
+    }
+    .main ul li:nth-child(even) {
+        margin: 0 0 2rem 2%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .nav .menuToggle {
+        display: block;
+    }
+    .nav .menu {
+        flex-direction: column;
+        width: 40vw;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        /* 因為陰影範圍，多移動 2% 距離 */
+        transform: translateX(102%);
+        transition: all .6s;
+        background: rgb(255, 255, 255, 0.9);
+        box-shadow: -1px 0 4px #c5c5c5;
+        padding-top: 2rem;
+    }
+    .nav #hamburger:checked ~ .menu {
+        transform: none;
+    }
+    .nav .menu li a {
+        margin: 0;
+        padding: 0.5rem 1rem;
+    }
+    .nav .menu li a:hover {
+        background: rgb(255, 184, 194, 0.5);
+    }
+    
+    .main ul li {
+        width: 100%;
+        padding-bottom: 100%;
+    }
+    .main ul li:nth-child(n) {
+        margin: 0 0 2rem 0;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .header h1 {
+        font-size: 1.6rem;
+        padding: 6.7rem 0;
+    }
+}
