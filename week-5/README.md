@@ -17,7 +17,7 @@ CREATE DATABASE website;
 
 SHOW DATABASES;
 ```
-![request2_1](https://wc-su.github.io/wehelp-assignments/week-5/images/request2_1.png)
+![request2_1](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request2_1.png)
 
 <br>
 
@@ -39,7 +39,7 @@ SHOW TABLES;
 
 DESC member;
 ```
-![request2_2](https://wc-su.github.io/wehelp-assignments/week-5/images/request2_2.png)
+![request2_2](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request2_2.png)
 
 <br><br>
 
@@ -53,7 +53,7 @@ INSERT INTO member(name, username, password, follower_count) VALUES("test2", "te
 INSERT INTO member(name, username, password, follower_count) VALUES("網紅", "may6699", "123456", 5000);
 INSERT INTO member(name, username, password, follower_count) VALUES("小花", "kiki", "159753", 500);
 ```
-![request3_1](https://wc-su.github.io/wehelp-assignments/week-5/images/request3_1.png)
+![request3_1](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request3_1.png)
 
 <br>
 
@@ -61,7 +61,7 @@ INSERT INTO member(name, username, password, follower_count) VALUES("小花", "k
 ```
 SELECT * FROM member;
 ```
-![request3_2](https://wc-su.github.io/wehelp-assignments/week-5/images/request3_2.png)
+![request3_2](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request3_2.png)
 
 <br>
 
@@ -69,7 +69,7 @@ SELECT * FROM member;
 ```
 SELECT * FROM member ORDER BY time DESC;
 ```
-![request3_3](https://wc-su.github.io/wehelp-assignments/week-5/images/request3_3.png)
+![request3_3](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request3_3.png)
 
 <br>
 
@@ -77,7 +77,7 @@ SELECT * FROM member ORDER BY time DESC;
 ```
 SELECT * FROM member ORDER BY time DESC LIMIT 1, 3;
 ```
-![request3_4](https://wc-su.github.io/wehelp-assignments/week-5/images/request3_4.png)
+![request3_4](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request3_4.png)
 
 <br>
 
@@ -85,7 +85,7 @@ SELECT * FROM member ORDER BY time DESC LIMIT 1, 3;
 ```
 SELECT * FROM member WHERE username="test";
 ```
-![request3_5](https://wc-su.github.io/wehelp-assignments/week-5/images/request3_5.png)
+![request3_5](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request3_5.png)
 
 <br>
 
@@ -93,7 +93,7 @@ SELECT * FROM member WHERE username="test";
 ```
 SELECT * FROM member WHERE username="test" and password="test";
 ```
-![request3_6](https://wc-su.github.io/wehelp-assignments/week-5/images/request3_6.png)
+![request3_6](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request3_6.png)
 
 <br>
 
@@ -103,7 +103,7 @@ UPDATE member SET name="test2" WHERE username="test";
 
 SELECT * FROM member WHERE username="test";
 ```
-![request3_7](https://wc-su.github.io/wehelp-assignments/week-5/images/request3_7.png)
+![request3_7](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request3_7.png)
 
 <br><br>
 
@@ -113,7 +113,7 @@ SELECT * FROM member WHERE username="test";
 ```
 SELECT COUNT(id) AS "會員數量" FROM member;
 ```
-![request4_1](https://wc-su.github.io/wehelp-assignments/week-5/images/request4_1.png)
+![request4_1](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request4_1.png)
 
 <br>
 
@@ -121,7 +121,7 @@ SELECT COUNT(id) AS "會員數量" FROM member;
 ```
 SELECT SUM(follower_count) AS "總追蹤者數量" FROM member;
 ```
-![request4_2](https://wc-su.github.io/wehelp-assignments/week-5/images/request4_2.png)
+![request4_2](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request4_2.png)
 
 <br>
 
@@ -129,7 +129,7 @@ SELECT SUM(follower_count) AS "總追蹤者數量" FROM member;
 ```
 SELECT SUM(follower_count) / COUNT(follower_count) AS "平均追蹤者數量" FROM member;
 ```
-![request4_3](https://wc-su.github.io/wehelp-assignments/week-5/images/request4_3.png)
+![request4_3](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request4_3.png)
 
 <br><br>
 
@@ -150,7 +150,7 @@ SHOW TABLES;
 
 DESC message;
 ```
-![request5_1_1](https://wc-su.github.io/wehelp-assignments/week-5/images/request5_1_1.png)
+![request5_1_1](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request5_1_1.png)
 ```
 INSERT INTO message(member_id, content) VALUES(4, "聊聊天");
 INSERT INTO message(member_id, content) VALUES(4, "talking");
@@ -162,7 +162,7 @@ INSERT INTO message(member_id, content) VALUES(5, "relax");
 
 SELECT * FROM message;
 ```
-![request5_1_2](https://wc-su.github.io/wehelp-assignments/week-5/images/request5_1_2.png)
+![request5_1_2](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request5_1_2.png)
 
 <br>
 
@@ -172,7 +172,7 @@ SELECT member.username AS "會員帳戶", member.name AS "會員姓名", message
 FROM message
 JOIN member ON member.id = message.member_id;
 ```
-![request5_2](https://wc-su.github.io/wehelp-assignments/week-5/images/request5_2.png)
+![request5_2](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request5_2.png)
 
 <br>
 
@@ -182,6 +182,6 @@ SELECT member.name AS "會員姓名", message.content AS "留言"
 FROM message
 JOIN member ON member.id = message.member_id AND member.username = "test";
 ```
-![request5_3](https://wc-su.github.io/wehelp-assignments/week-5/images/request5_3.png)
+![request5_3](https://github.com/wc-su/wehelp-assignments/blob/main/week-5/images/request5_3.png)
 
 <br><br>
