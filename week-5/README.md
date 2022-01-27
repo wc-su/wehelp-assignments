@@ -1,10 +1,3 @@
-<style>
-h2 {
-  background: lightblue;
-  padding: 10px;
-}
-</style>
-
 # Assignment 5
 
 <br>
