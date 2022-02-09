@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁</title>
+    <link rel="stylesheet" href="/static/all.css">
+</head>
+<body>
+    <div class="header">
+        <h1 id="title">歡迎光臨，請輸入帳號密碼</h1>
+    </div>
+    <div class="main">
+        <div class="wrap">
+            <form action="/signup/" method="post">
+                <p class="p-b">註冊帳號</p>
+                <div class="form-row" id="name-signup">
+                    <label for="signup-name">姓名</label>
+                    <input type="text" name="name" id="signup-name">
+                </div>
+                <div class="form-row">
+                    <label for="signup-username">帳號</label>
+                    <input type="text" name="username" id="signup-username">
+                </div>
+                <div class="form-row">
+                    <label for="signup-pwd">密碼</label>
+                    <input type="text" name="password" id="signup-pwd">
+                </div>
+                <div class="form-row">
+                    <button>註冊</button>
+                </div>
+            </form>
+            <p class="signup-msg" id="signup-msg">{{ message }}</p>
+            <form action="/signin/" method="post">
+                <p class="p-b">登入系統</p>
+                <div class="form-row">
+                    <label for="signin-username">帳號</label>
+                    <input type="text" name="username" id="signin-username">
+                </div>
+                <div class="form-row">
+                    <label for="signin-pwd">密碼</label>
+                    <input type="text" name="password" id="signin-pwd">
+                </div>
+                <div class="form-row">
+                    <button>登入</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/static/index.js"></script>
+</body>
+</html>
