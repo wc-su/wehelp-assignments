@@ -5,3 +5,4 @@
 * Week 3 - 取得網路公開資料 ( javascript & python )
 * Week 4 - 架設 Flask 網站後端伺服器 ( python )
 * Week 5 - 架設 MySQL 資料庫 ( MySQL )
+* Week 6 - 基礎會員系統開發 ( python & MySQL )
