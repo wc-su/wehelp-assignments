@@ -4,7 +4,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 from flask import session
-import pymysql
+import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -22,7 +22,7 @@ db_settings = {
 def insertDB(data):
     try:
         # 建立Connection物件
-        conn = pymysql.connect(**db_settings)
+        conn = mysql.connector.connect(**db_settings)
         # 建立Cursor物件
         with conn.cursor() as cursor:
             command = "INSERT INTO member(name, username, password, follower_count)" "VALUES(%s, %s, %s, %s)"
@@ -30,17 +30,23 @@ def insertDB(data):
             # 儲存變更
             conn.commit()
             return {
-                "status": "ok"
+                "status": "ok",
+                "count": cursor.rowcount,
+                "result": ()
             }
     except Exception as ex:
-        print("mysql insert error", ex)
+        print("*** mysql insert error", ex)
         conn.rollback()
-        return redirect(url_for("error", message="系統錯誤"))
+        return {
+            "status": "err",
+            "count": 0,
+            "result": ()
+        }
 
 def queryDB(data):
     try:
         # 建立Connection物件
-        conn = pymysql.connect(**db_settings)
+        conn = mysql.connector.connect(**db_settings)
         # 建立Cursor物件
         with conn.cursor() as cursor:
             command = "SELECT name FROM member WHERE 1 = 1"
@@ -56,8 +62,12 @@ def queryDB(data):
                 "result": result
             }
     except Exception as ex:
-        print("mysql query error", ex)
-        return redirect(url_for("error", message="系統錯誤"))
+        print("*** mysql query error", ex)
+        return {
+            "status": "err",
+            "count": 0,
+            "result": ()
+        }
 
 # 首頁網址
 @app.route("/", methods=["GET"])
@@ -78,20 +88,22 @@ def index():
 def signin():
     username = request.form["username"].rstrip()
     password = request.form["password"].rstrip()
-    if username or password:
+    if username and password:
         result = queryDB({
             "username": username,
             "password": password
         })
+        if result["status"] == "err":
+            return redirect(url_for("error", message="系統錯誤"))
         if result["status"] == "ok" and int(result["count"]) > 0:
             # 使用者狀態改為「已登入」，導向【成功頁面網址】
-            session["login_name"] = result["result"][0][0]
+            session["login_name"] = result["result"][0]
             return redirect(url_for("member"))
     elif username == "" and password == "":
         # 導向【失敗頁面網址】，並帶入錯誤訊息
-        return redirect(url_for("error", message="請輸入帳號、密碼"))
+        return redirect(url_for("error", message="【登入系統】請輸入帳號、密碼"))
     # 導向【失敗頁面網址】，並帶入錯誤訊息
-    return redirect(url_for("error", message="帳號或密碼輸入錯誤"))
+    return redirect(url_for("error", message="【登入系統】帳號或密碼輸入錯誤"))
 
 # 註冊功能網址
 @app.route("/signup/", methods=["POST"])
@@ -100,19 +112,25 @@ def signup():
     username = request.form["username"]
     password = request.form["password"]
     if name == "" or username == "" or password == "":
-        return redirect(url_for("error", message = "請輸入姓名、帳號、密碼"))
+        return redirect(url_for("error", message = "【註冊帳號】請輸入姓名、帳號、密碼"))
     else:
+        # 查詢資料庫
         result = queryDB({
             "username": username
         })
+        if result["status"] == "err":
+            return redirect(url_for("error", message="系統錯誤"))
         if result["status"] == "ok" and int(result["count"]) > 0:
-            return redirect(url_for("error", message = "帳號已經被註冊"))
+            return redirect(url_for("error", message = "【註冊帳號】帳號已經被註冊"))
+        # 新增至資料庫
         result = insertDB({
             "name": name,
             "username": username,
             "password": password,
             "follower_count": 0
         })
+        if result["status"] == "err":
+            return redirect(url_for("error", message="系統錯誤"))
         session["signup-msg"] = "↓↓↓ 帳號註冊成功，請登入系統 ↓↓↓"
         return redirect(url_for("index"))
 
