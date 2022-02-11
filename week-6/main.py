@@ -1,5 +1,3 @@
-from cmath import log
-from distutils.log import Log
 from flask import Flask
 from flask import render_template
 from flask import request
