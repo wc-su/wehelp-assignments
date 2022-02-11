@@ -1,3 +1,5 @@
+from cmath import log
+from distutils.log import Log
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -25,8 +27,8 @@ def insertDB(data):
         conn = mysql.connector.connect(**db_settings)
         # 建立Cursor物件
         with conn.cursor() as cursor:
-            command = "INSERT INTO member(name, username, password, follower_count)" "VALUES(%s, %s, %s, %s)"
-            cursor.execute(command, (data["name"], data["username"], data["password"], data["follower_count"]))
+            command = "INSERT INTO member(name, username, password, follower_count) VALUES(%(name)s, %(username)s, %(password)s, %(follower_count)s)"
+            cursor.execute(command, data)
             # 儲存變更
             conn.commit()
             return {
@@ -49,12 +51,8 @@ def queryDB(data):
         conn = mysql.connector.connect(**db_settings)
         # 建立Cursor物件
         with conn.cursor() as cursor:
-            command = "SELECT name FROM member WHERE 1 = 1"
-            if data.get("username"):
-                command = command + " AND username = '" + data["username"] + "'"
-            if data.get("password"):
-                command = command + " AND password = '" + data["password"] + "'"
-            cursor.execute(command)
+            command = "SELECT name FROM member WHERE " + " AND ".join([k + ' = %(' + k + ')s' for k in data.keys()])
+            cursor.execute(command, data)
             result = cursor.fetchone()
             return {
                 "status": "ok",
