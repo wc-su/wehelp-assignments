@@ -112,16 +112,17 @@ def getMemberName():
 
 @app.route("/api/member", methods = ["POST"])
 def updateMemberName():
-    reponse = { "data": None }
+    reponse = { "error": True }
 
-    name = request.json["name"]
+    if "login_info" in session:
+        name = request.json["name"]
 
-    result = updateDB(conn, {
-        "name": name,
-        "id": session["login_info"]["id"]
-    })
-    if result["status"] == "ok":
-        reponse = { "ok": True }
+        result = updateDB(conn, {
+            "name": name,
+            "id": session["login_info"]["id"]
+        })
+        if result["status"] == "ok":
+            reponse = { "ok": True }
 
     return reponse
 
