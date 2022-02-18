@@ -100,8 +100,6 @@ def getMemberName():
         result = queryDB(conn, {
             "username": username
         })
-        # if result["status"] == "err":
-        #     return redirect(url_for("error", message="系統錯誤"))
         if result["status"] == "ok" and int(result["count"]) > 0:
             query_data = result["data"]
             reponse["data"] = {
@@ -122,8 +120,6 @@ def updateMemberName():
         "name": name,
         "id": session["login_info"]["id"]
     })
-    # if result["status"] == "err":
-    #     return redirect(url_for("error", message="系統錯誤"))
     if result["status"] == "ok":
         reponse = { "ok": True }
 
