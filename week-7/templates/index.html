@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁</title>
+    <link rel="stylesheet" href="/static/normalize.css">
+    <link rel="stylesheet" href="/static/all.css">
+</head>
+<body>
+    <div class="header">
+        <h1 class="header__title">歡迎光臨，請註冊登入系統</h1>
+    </div>
+    <div class="main">
+        <form action="/signup/" method="post" class="block block--circle">
+            <h3>註冊帳號</h3>
+            <div class="block__row" id="name-signup">
+                <label for="signup-name">姓名</label>
+                <input type="text" name="name" id="signup-name">
+            </div>
+            <div class="block__row">
+                <label for="signup-username">帳號</label>
+                <input type="text" name="username" id="signup-username">
+            </div>
+            <div class="block__row">
+                <label for="signup-pwd">密碼</label>
+                <input type="password" name="password" id="signup-pwd">
+            </div>
+            <div class="block__row">
+                <button>註冊</button>
+            </div>
+        </form>
+        <p id="signup-msg"
+        {% if message %}
+            class="main__message"
+        {% else %}
+            class="main__message main__messgge--undisplay"
+        {% endif %}
+        >{{ message }}</p>
+        <form action="/signin/" method="post" class="block block--circle">
+            <h3>登入系統</h3>
+            <div class="block__row">
+                <label for="signin-username">帳號</label>
+                <input type="text" name="username" id="signin-username">
+            </div>
+            <div class="block__row">
+                <label for="signin-pwd">密碼</label>
+                <input type="password" name="password" id="signin-pwd">
+            </div>
+            <div class="block__row">
+                <button>登入</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
